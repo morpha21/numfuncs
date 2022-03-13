@@ -13,6 +13,7 @@ func PrimeCheck(num int) bool {
 	return true && num != 1 //1 is not a prime number
 }
 
+//checks whether num is a perfect number or not
 func PerfectCheck(num int) bool {
 	div := 1
 	raiz := math.Sqrt(float64(num))
