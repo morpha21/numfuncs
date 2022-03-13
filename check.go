@@ -12,3 +12,15 @@ func PrimeCheck(num int) bool {
 	}
 	return true && num != 1 //1 is not a prime number
 }
+
+func PerfectCheck(num int) bool {
+	div := 1
+	raiz := math.Sqrt(float64(num))
+
+	for i := 2; i <= int(raiz); i++ {
+		if num%i == 0 {
+			div += i + num/i
+		}
+	}
+	return num == div && num != 1
+}

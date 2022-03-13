@@ -8,4 +8,10 @@ func main() {
 			fmt.Println(i)
 		}
 	}
+
+	for i := 1; i < 8200; i++ {
+		if PerfectCheck(i) {
+			fmt.Println(i)
+		}
+	}
 }
