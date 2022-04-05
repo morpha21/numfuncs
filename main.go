@@ -3,22 +3,20 @@ package main
 import (
 	"fmt"
 	nc "numfuncs/numchecks"
+	"time"
 )
 
 func main() {
-	fmt.Println("Some prime numbers:")
-	for i := 1; i < 20; i++ {
-		if nc.PrimeCheck(i) {
-			fmt.Println(i)
-		}
-	}
+	beginning := time.Now()
+	counter := 0
 
-	fmt.Println()
+	fmt.Println(beginning)
 
-	fmt.Println("some perfect numbers:")
-	for i := 1; i < 8200; i++ {
-		if nc.PerfectCheck(i) {
-			fmt.Println(i)
-		}
-	}
+	go nc.PerfectCount(1, 4, &counter, 5, beginning)
+	go nc.PerfectCount(2, 4, &counter, 5, beginning)
+	go nc.PerfectCount(3, 4, &counter, 5, beginning)
+	go nc.PerfectCount(4, 4, &counter, 5, beginning)
+
+	//we are expecting to find 5 perfect numbers within 10minutes
+	time.Sleep(10 * time.Minute)
 }
