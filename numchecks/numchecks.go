@@ -24,8 +24,7 @@ func PerfectCheck(num int) bool {
 func PerfectCount(num int, jump int, count *int, quantity int, beginning time.Time) {
 	for *count < quantity {
 		if PerfectCheck(num) {
-			fmt.Printf("Perfect number:\t\t%v\n", num)
-			fmt.Printf("time since beginning:\t%v\n\n", time.Since(beginning))
+			fmt.Printf("Perfect number:\t\t%v\ntime since beginning:\t%v\n\n", num, time.Since(beginning))
 			*count++
 		}
 		num += jump
