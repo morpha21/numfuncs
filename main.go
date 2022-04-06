@@ -1,24 +1,23 @@
 package main
 
 import (
-	"fmt"
 	nc "numfuncs/numchecks"
+	"os"
+	"strconv"
 	"time"
 )
 
 func main() {
 	beginning := time.Now()
 	counter := 0
+	channel := make(chan bool)
 
-	fmt.Println(beginning)
+	numOfPerfs, _ := strconv.Atoi(os.Args[1])
+	goNum, _ := strconv.Atoi(os.Args[2])
 
-	go nc.PerfectCount(1, 6, &counter, 5, beginning)
-	go nc.PerfectCount(2, 6, &counter, 5, beginning)
-	go nc.PerfectCount(3, 6, &counter, 5, beginning)
-	go nc.PerfectCount(4, 6, &counter, 5, beginning)
-	go nc.PerfectCount(5, 6, &counter, 5, beginning)
-	go nc.PerfectCount(6, 6, &counter, 5, beginning)
+	for i := 1; i <= goNum; i++ {
+		go nc.PerfectCount(i, goNum, &counter, numOfPerfs, beginning, channel)
+	}
 
-	//we are expecting to find 5 perfect numbers within 10minutes
-	time.Sleep(10 * time.Minute)
+	<-channel
 }

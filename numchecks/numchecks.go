@@ -21,7 +21,7 @@ func PerfectCheck(num int) bool {
 
 //counts perfect numbers starting from <num>, and then jumping <jump> steps, until it prints <quantity> numbers
 //the jump's purpose is to call the function concurrently, from different starting points
-func PerfectCount(num int, jump int, count *int, quantity int, beginning time.Time) {
+func PerfectCount(num int, jump int, count *int, quantity int, beginning time.Time, finish chan bool) {
 	for *count < quantity {
 		if PerfectCheck(num) {
 			fmt.Printf("Perfect number:\t\t%v\ntime since beginning:\t%v\n\n", num, time.Since(beginning))
@@ -29,7 +29,7 @@ func PerfectCount(num int, jump int, count *int, quantity int, beginning time.Ti
 		}
 		num += jump
 	}
-
+	finish <- true
 }
 
 //checks whether num is a prime number or not
